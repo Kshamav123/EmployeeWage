@@ -33,12 +33,13 @@ public class UC7 {
             default:
                 empHrs = 0;
             }
-            totalWorkHrs +=empHrs;
+            //totalWorkHrs +=empHrs;
             empWage = obj.empRate * empHrs; 
             totalEmpWage += empWage;
             System.out.println("Day " + totalWorkingDays + " ");
             System.out.println("Employee Wage for Company : Rs."  + empWage);
         }
+        System.out.println("Employee Wage for a month: Rs.  " + totalEmpWage);
 
     }
 }
