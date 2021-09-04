@@ -1,33 +1,37 @@
 package com.EmployeeProblem;
 
+import java.util.ArrayList;
+
 public class Employeepg implements IComputeEmpWage{
 	public static final int IS_Part_Time = 1;
     public static final int IS_FULL_TIME =2;
 	
 	private  int numOfCompany=0;
-	private Company[] CompanyArray;
+	private ArrayList<Company> CompanyArrayList;
 	
 	//constructor for initializing members of a class
 	public Employeepg()
 	{
-		CompanyArray = new Company[5];
+		CompanyArrayList = new ArrayList<>();
 		
 	}
 	
 	//Method to create an object and add details of multiple companies
 	public void addCompanyEmpWage(String company,int empRate,int workingDays,int maxHrs)
 	{
-		CompanyArray[numOfCompany]=new Company(company, empRate, workingDays, maxHrs);
+		Company companyEmpWage1 =new Company(company, empRate, workingDays, maxHrs);
+		CompanyArrayList.add(companyEmpWage1);
 		numOfCompany++;
 	}
 	
 	//Static method to compute the wage for a particular company
 	public void computeEmpWage()
 	{
-		for(int i=0;i<numOfCompany;i++)
+		for(int i=0;i<CompanyArrayList.size();i++)
 		{
-			CompanyArray[i].setTotalEmpWage(this.computingEmpWage(CompanyArray[i]));
-			System.out.println(CompanyArray[i]);
+			Company CompanyEmpWage = CompanyArrayList.get(i);
+			CompanyEmpWage.setTotalEmpWage(this.computingEmpWage(CompanyEmpWage));
+			System.out.println(CompanyEmpWage);
 		}
 	}
 	
@@ -61,7 +65,7 @@ public class Employeepg implements IComputeEmpWage{
 
 	public static void main(String[] args) {
 		//object creation
-		Employeepg employeeWageBuilder =new Employeepg();
+		IComputeEmpWage employeeWageBuilder =new Employeepg();
 		
 		employeeWageBuilder.addCompanyEmpWage("Infosys",20,80,100);
 		employeeWageBuilder.addCompanyEmpWage("Reliance",10,20,150);
