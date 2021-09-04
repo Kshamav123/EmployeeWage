@@ -1,74 +1,77 @@
 package com.EmployeeProblem;
-public class Employeepg{
 
-  //class members
-        public static final int Is_Part_Time = 1;
-        public static final int Is_Full_Time = 2;
+public class Employeepg {
+	public static final int IS_Part_Time = 1;
+    public static final int IS_FULL_TIME =2;
+	
+	private  int numOfCompany=0;
+	private Company[] CompanyArray;
+	
+	//constructor for initializing members of a class
+	public Employeepg()
+	{
+		CompanyArray = new Company[5];
+		
+	}
+	
+	//Method to create an object and add details of multiple companies
+	public void addCompanyEmpWage(String company,int empRate,int workingDays,int maxHrs)
+	{
+		CompanyArray[numOfCompany]=new Company(company, empRate, workingDays, maxHrs);
+		numOfCompany++;
+	}
+	
+	//Static method to compute the wage for a particular company
+	private void computeEmpWage()
+	{
+		for(int i=0;i<numOfCompany;i++)
+		{
+			CompanyArray[i].setTotalEmpWage(this.computingEmpWage(CompanyArray[i]));
+			System.out.println(CompanyArray[i]);
+		}
+	}
+	
+	private int computingEmpWage(Company Company)         
+	{                                                                                             
+		//variables                                                                               
+	    int empHrs = 0;                                                                           
+	    int empWage = 0, totalEmpWage = 0, totalWorkHrs = 0, totalWorkingDays =0;                 
+	    //Computation                                                                             
+	    while (totalWorkHrs <= Company.maxHrs && totalWorkingDays < Company.workingDays)                          
+	    {                                                                                         
+	    	totalWorkingDays++;                                                                   
+	    	int empcheck= (int) Math.floor(Math.random() * 10) % 3;                               
+	    	switch(empcheck)                                                                      
+	    	{                                                                                     
+	     		case IS_Part_Time: {                                                              
+	     								empHrs = 8;                                                                      
+	     								break;                                                    
+	     							}                                                             
+	     		case IS_FULL_TIME: {                                                              
+	     								empHrs = 4;                                                                      
+	     								break;                                                    
+	     							}                                                             
+	     		default: empHrs = 0;                                                              
+	    	}                                                                     
+	    	totalWorkHrs += empHrs;                                                                                                    
+	    	totalEmpWage = Company.empRate + totalWorkHrs;                                                               
+	    }                                                                    
+	    return totalEmpWage;
+	}                                                                                             
 
-        private final String company;
-        private final int empRate;
-        private final int workingDays;
-        private final int maxHrs;
-        private int totalEmpWage;
-        
-          //constructor of class Employeepg
-        public Employeepg(int empRate, int workingDays, int maxHrs, String company) {
-            this.empRate = empRate;
-            this.company = company;
-            this.workingDays = workingDays;
-            this.maxHrs = maxHrs;
-        }
-         // function
-        public void computeWage() {
-            //variables
-            int empHrs = 0;
-            int empWage = 0, totalWorkHrs = 0, totalWorkingDays = 0;
-            while (totalWorkHrs <= maxHrs && totalWorkingDays < workingDays) {
-                
-                totalWorkingDays++;
-                int empcheck = (int) Math.floor(Math.random() * 10) % 3;
-                switch (empcheck) {
-                case Is_Part_Time: {
-                    empHrs = 8;
-                    break;
-                }
-                case Is_Full_Time: {
-                    empHrs = 4;
-                    break;
-                }
-                default:
-                    empHrs = 0;
-                }
-                empWage = empRate * empHrs;
-                totalWorkHrs += empHrs;
-                totalEmpWage += empWage;
-                
-            }
-            System.out.println("Employee Wage for a month in " + company + ": Rs. " + totalEmpWage);
-            
-        }
-        
+	public static void main(String[] args) {
+		//object creation
+		Employeepg employeeWageBuilder =new Employeepg();
+		
+		employeeWageBuilder.addCompanyEmpWage("DMart",20,20,100);
+		employeeWageBuilder.addCompanyEmpWage("TATA Electronics",10,20,150);
+		employeeWageBuilder.addCompanyEmpWage("Deloitte",30,20,100);
+		employeeWageBuilder.computeEmpWage();             
 
-        
-        @Override
-        public String toString() {
-            return "Employee wage [totalEmpWage=" + totalEmpWage + "]";
-        }
-        
-        public static void main(String[] args) {
-            
-       Employeepg infosys = new Employeepg(20,40,45,"Infosys");
-       infosys.computeWage();
-       System.out.println(infosys);
-       Employeepg reliance = new Employeepg(70,40,45,"Reliance");
-       reliance.computeWage();
-       System.out.println(reliance);
+	}
 
-            
-        }
-
-    }
 }
+
 
 
 
