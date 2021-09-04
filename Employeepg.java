@@ -1,6 +1,6 @@
 package com.EmployeeProblem;
 
-public class Employeepg {
+public class Employeepg implements IComputeEmpWage{
 	public static final int IS_Part_Time = 1;
     public static final int IS_FULL_TIME =2;
 	
@@ -22,7 +22,7 @@ public class Employeepg {
 	}
 	
 	//Static method to compute the wage for a particular company
-	private void computeEmpWage()
+	public void computeEmpWage()
 	{
 		for(int i=0;i<numOfCompany;i++)
 		{
@@ -63,9 +63,9 @@ public class Employeepg {
 		//object creation
 		Employeepg employeeWageBuilder =new Employeepg();
 		
-		employeeWageBuilder.addCompanyEmpWage("DMart",20,20,100);
-		employeeWageBuilder.addCompanyEmpWage("TATA Electronics",10,20,150);
-		employeeWageBuilder.addCompanyEmpWage("Deloitte",30,20,100);
+		employeeWageBuilder.addCompanyEmpWage("Infosys",20,80,100);
+		employeeWageBuilder.addCompanyEmpWage("Reliance",10,20,150);
+		employeeWageBuilder.addCompanyEmpWage("Accenture",80,20,100);
 		employeeWageBuilder.computeEmpWage();             
 
 	}
