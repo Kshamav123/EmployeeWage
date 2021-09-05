@@ -9,14 +9,16 @@ public class Employeepg implements IComputeEmpWage{
 	private  int numOfCompany=0;
 	private ArrayList<Company> CompanyArrayList;
 	
-	//constructor for initializing members of a class
+	/*constructor for initializing members of a class*/
+	
 	public Employeepg()
 	{
 		CompanyArrayList = new ArrayList<>();
 		
 	}
 	
-	//Method to create an object and add details of multiple companies
+	/*Method to create an object and add details of multiple companies*/
+	
 	public void addCompanyEmpWage(String company,int empRate,int workingDays,int maxHrs)
 	{
 		Company companyEmpWage1 =new Company(company, empRate, workingDays, maxHrs);
@@ -24,7 +26,8 @@ public class Employeepg implements IComputeEmpWage{
 		numOfCompany++;
 	}
 	
-	//Static method to compute the wage for a particular company
+	/* method to compute the wage for a particular company*/
+	
 	public void computeEmpWage()
 	{
 		for(int i=0;i<CompanyArrayList.size();i++)
@@ -34,13 +37,14 @@ public class Employeepg implements IComputeEmpWage{
 			System.out.println(CompanyEmpWage);
 		}
 	}
+	/* Storing the daily wage and total wage*/
 	
 	private int computingEmpWage(Company Company)         
 	{                                                                                             
-		//variables                                                                               
+		                                                                              
 	    int empHrs = 0;                                                                           
 	    int empWage = 0, totalEmpWage = 0, totalWorkHrs = 0, totalWorkingDays =0;                 
-	    //Computation                                                                             
+	                                                                               
 	    while (totalWorkHrs <= Company.maxHrs && totalWorkingDays < Company.workingDays)                          
 	    {                                                                                         
 	    	totalWorkingDays++;                                                                   
@@ -57,14 +61,17 @@ public class Employeepg implements IComputeEmpWage{
 	     							}                                                             
 	     		default: empHrs = 0;                                                              
 	    	}                                                                     
-	    	totalWorkHrs += empHrs;                                                                                                    
-	    	totalEmpWage = Company.empRate + totalWorkHrs;                                                               
-	    }                                                                    
+	    	totalWorkHrs += empHrs; 
+	    	empWage = empHrs*Company.empRate;
+	    	totalEmpWage = Company.empRate * totalWorkHrs;    
+	    	System.out.println("Employee Wage "+empWage);
+	    } 
+	    
 	    return totalEmpWage;
 	}                                                                                             
 
 	public static void main(String[] args) {
-		//object creation
+		/*object creation*/
 		IComputeEmpWage employeeWageBuilder =new Employeepg();
 		
 		employeeWageBuilder.addCompanyEmpWage("Infosys",20,80,100);
