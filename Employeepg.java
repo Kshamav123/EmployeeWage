@@ -63,8 +63,9 @@ public class Employeepg implements IComputeEmpWage{
 	    	}                                                                     
 	    	totalWorkHrs += empHrs; 
 	    	empWage = empHrs*Company.empRate;
+	    	Company.setEmpWage(empWage);
 	    	totalEmpWage = Company.empRate * totalWorkHrs;    
-	    	System.out.println("Employee Wage "+empWage);
+	    	System.out.println("Day " +totalWorkingDays+" Employee Wage " +Company.setEmpWage(empWage));
 	    } 
 	    
 	    return totalEmpWage;

@@ -6,6 +6,7 @@ public class Company {
 	 public final int workingDays; 
 	 public final int maxHrs;      
 	 public int totalWage;
+	 public int empWage;
 	
 	public Company(String company,int empRate,int workingDays,int maxHrs)
 	{
@@ -20,6 +21,12 @@ public class Company {
 		this.totalWage=totalWage;
 	}
 	
+	
+
+	public int setEmpWage(int empWage) {
+		return this.empWage = empWage;
+	}
+
 	@Override
 	public String toString() {
 		return "Total Employee Wage of the company "+company+ " is: Rs. "+totalWage;
